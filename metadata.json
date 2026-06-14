@@ -1,0 +1,6 @@
+{
+  "name": "广州银行内部门户",
+  "description": "广州银行内部门户系统，完美还原设计稿，高保真排版设计、支持响应式布局、提供多模块交互和流畅动画体验。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

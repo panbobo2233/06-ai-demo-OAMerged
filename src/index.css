@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gzred: #ce1b24;
+  --color-gzred-hover: #b0141b;
+  --color-gzgold: #d4af37;
+  --color-brand-red: #b50e18;
+  --color-brand-red-hover: #9c0c14;
+  --font-sans: "Inter", "Microsoft YaHei", "PingFang SC", sans-serif;
+}
+
+/* Custom styles for high-fidelity portal draft */
+body {
+  background-color: #f7f9fc;
+  color: #1e293b;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.glow-gzred {
+  box-shadow: 0 4px 20px -2px rgba(206, 27, 36, 0.15);
+}
+
+.text-stroke-title {
+  -webkit-text-stroke: 1px #ce1b24;
+}

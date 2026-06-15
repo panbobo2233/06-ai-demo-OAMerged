@@ -110,7 +110,7 @@ export default function Header({
             }`}
           >
             {viewMode === 'leader' ? (
-              <><Crown className="w-3 h-3 text-amber-500" /><span className="hidden sm:inline">领导视图</span></>
+              <><Crown className="w-3 h-3 text-amber-500" /><span className="hidden sm:inline">管理视图</span></>
             ) : (
               <><LayoutDashboard className="w-3 h-3 text-slate-500" /><span className="hidden sm:inline">标准视图</span></>
             )}

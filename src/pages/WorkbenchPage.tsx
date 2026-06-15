@@ -13,6 +13,7 @@ interface WorkbenchPageProps {
   viewMode: 'leader' | 'full';
 }
 
+
 export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: WorkbenchPageProps) {
 
   // --- Workspace States ---
@@ -22,10 +23,8 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
   // Active filter states
   const [currentSection, setCurrentSection] = useState<'待办' | '待阅' | '已处理'>('待办');
   const [currentCategoryFilter, setCurrentCategoryFilter] = useState<string>('全部'); // 全部, 收文, 发文, 签报, 印章, 休假
-  const [currentStatusFilter, setCurrentStatusFilter] = useState<'all' | 'pending' | 'done'>('pending');
   const [processedFilter, setProcessedFilter] = useState<'已办' | '已阅'>('已办'); // 已处理Tab下的子筛选
   const [selectedSidebarMenu, setSelectedSidebarMenu] = useState<string>('flow');
-  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
 
   // Editing User / Personal info State
   const [currentUser, setCurrentUser] = useState({
@@ -57,7 +56,6 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
     setCalendarEvents(initialCalendarEvents);
     setCurrentSection('待办');
     setCurrentCategoryFilter('全部');
-    setCurrentStatusFilter('pending');
     setSelectedSidebarMenu('flow');
     setCurrentUser({
       name: '郑成功',
@@ -158,15 +156,7 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
   const displayPendingCount = pendingCount <= 5 ? 36 + (pendingCount - 5) : 31 + pendingCount;
   const displayToReadCount = toReadCount <= 5 ? 50 + (toReadCount - 5) : 45 + toReadCount;
 
-  // 当前 Tab 下的子状态计数
-  const sectionTasks = tasks.filter((t) => t.section === currentSection);
-  const sectionPendingCount = sectionTasks.filter((t) => t.unread).length;
-  const sectionDoneCount = sectionTasks.filter((t) => !t.unread).length;
-  const statusLabels = currentSection === '待办'
-    ? { pending: '待处理', done: '已办结' }
-    : currentSection === '待阅'
-    ? { pending: '未阅读', done: '已查阅' }
-    : { pending: '已办', done: '已阅' }; // 已处理Tab
+
 
   // --- Filtering Task List ---
   const filteredTasks = tasks.filter((task) => {
@@ -181,19 +171,12 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
       if (task.section !== currentSection) return false;
     }
 
-    // 2. Matches category sub filter pills
-    if (currentCategoryFilter !== '全部') {
+    // 2. Matches category type filter pills (仅待办/待阅生效，已处理不区分分类)
+    if (currentSection !== '已处理' && currentCategoryFilter !== '全部') {
       if (task.type !== currentCategoryFilter) return false;
     }
 
-    // 3. Matches status sub filter (待处理/已办结 or 未阅读/已查阅)
-    if (currentStatusFilter === 'pending') {
-      if (!task.unread) return false;
-    } else if (currentStatusFilter === 'done') {
-      if (task.unread) return false;
-    }
-
-    // 4. Search box term matching
+    // 3. Search box term matching
     if (searchTerm.trim() !== '') {
       const lower = searchTerm.toLowerCase();
       return (
@@ -238,19 +221,20 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
           {/* Middle Row Section: Left Side list (70%) + Right Side clock/calendar (30%) */}
           <div className="grid grid-cols-10 gap-6 items-start">
             
-            {/* Middle left Content Container: White card with lists and filter tabs */}
-            <div className="col-span-7 bg-white rounded-lg shadow-xs border border-gray-100 flex flex-col p-6 min-h-[480px]">
-              
+            {/* Middle left Content Container */}
+            <div className="col-span-7 flex flex-col space-y-6">
+
+              {/* White card with task list */}
+              <div className="bg-white rounded-lg shadow-xs border border-gray-100 flex flex-col p-6 min-h-[520px]">
+
               {/* Primary Tabs block: "待办" vs "待阅" switcher */}
-              <div className="flex items-center justify-between border-b border-gray-150 pb-3">
+              <div className="flex items-center justify-between border-b border-gray-200 pb-3">
                 <div className="flex items-center space-x-6">
                   {/* 待办 Tab */}
                   <button
                     onClick={() => {
                       setCurrentSection('待办');
                       setCurrentCategoryFilter('全部');
-                      setCurrentStatusFilter('pending');
-                      setShowCategoryDropdown(false);
                     }}
                     className={`flex items-baseline space-x-2 pb-1.5 transition-all text-left relative cursor-pointer group ${
                       currentSection === '待办' 
@@ -283,8 +267,6 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                     onClick={() => {
                       setCurrentSection('待阅');
                       setCurrentCategoryFilter('全部');
-                      setCurrentStatusFilter('pending');
-                      setShowCategoryDropdown(false);
                     }}
                     className={`flex items-baseline space-x-2 pb-1.5 transition-all text-left relative cursor-pointer group ${
                       currentSection === '待阅' 
@@ -316,9 +298,7 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                     onClick={() => {
                       setCurrentSection('已处理');
                       setCurrentCategoryFilter('全部');
-                      setCurrentStatusFilter('pending');
                       setProcessedFilter('已办');
-                      setShowCategoryDropdown(false);
                     }}
                     className={`flex items-baseline space-x-2 pb-1.5 transition-all text-left relative cursor-pointer group ${
                       currentSection === '已处理'
@@ -360,8 +340,8 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                 </button>
               </div>
 
-              {/* Sub-status filter + 分类筛选下拉 */}
-              <div className="flex items-center justify-between py-3 border-b border-gray-100">
+              {/* 子筛选行：待办/待阅按分类，已处理按已办/已阅 */}
+              <div className="flex items-center justify-between py-3">
                 <div className="flex items-center space-x-1">
                   {currentSection === '已处理' ? (
                     <>
@@ -374,13 +354,10 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                         }`}
                       >
                         已办
-                        <span className={`ml-1 text-[10.5px] ${
-                          processedFilter === '已办' ? 'text-emerald-400' : 'text-gray-400'
-                        }`}>
+                        <span className="ml-1 text-[10.5px] text-gray-400">
                           {tasks.filter(t => !t.unread && t.section === '待办').length}
                         </span>
                       </button>
-                      <span className="text-gray-300 mx-1">|</span>
                       <button
                         onClick={() => setProcessedFilter('已阅')}
                         className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
@@ -390,95 +367,37 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                         }`}
                       >
                         已阅
-                        <span className={`ml-1 text-[10.5px] ${
-                          processedFilter === '已阅' ? 'text-emerald-400' : 'text-gray-400'
-                        }`}>
+                        <span className="ml-1 text-[10.5px] text-gray-400">
                           {tasks.filter(t => !t.unread && t.section === '待阅').length}
                         </span>
                       </button>
                     </>
                   ) : (
-                    <>
+                    ['全部', '收文', '发文', '签报', '印章', '休假'].map((cat) => (
                       <button
-                        onClick={() => setCurrentStatusFilter('pending')}
+                        key={cat}
+                        onClick={() => setCurrentCategoryFilter(cat)}
                         className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
-                          currentStatusFilter === 'pending'
+                          currentCategoryFilter === cat
                             ? 'bg-red-50 text-red-600 font-semibold border border-red-200'
                             : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
                         }`}
                       >
-                        {statusLabels.pending}
-                        <span className={`ml-1 text-[10.5px] ${
-                          currentStatusFilter === 'pending' ? 'text-red-400' : 'text-gray-400'
-                        }`}>
-                          {sectionPendingCount}
-                        </span>
+                        {cat}
                       </button>
-                      <span className="text-gray-300 mx-1">|</span>
-                      <button
-                        onClick={() => setCurrentStatusFilter('done')}
-                        className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
-                          currentStatusFilter === 'done'
-                            ? 'bg-red-50 text-red-600 font-semibold border border-red-200'
-                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                        }`}
-                      >
-                        {statusLabels.done}
-                      </button>
-                      <span className="text-gray-300 mx-1">|</span>
-                      <button
-                        onClick={() => setCurrentStatusFilter('all')}
-                        className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
-                          currentStatusFilter === 'all'
-                            ? 'bg-red-50 text-red-600 font-semibold border border-red-200'
-                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                        }`}
-                      >
-                        全部
-                      </button>
-                    </>
+                    ))
                   )}
                 </div>
 
-                <div className="flex items-center space-x-3">
-                  {searchTerm && (
-                    <span className="text-[11px] text-gray-400 italic">
-                      搜索: "{searchTerm}"
-                    </span>
-                  )}
-                  <div className="relative">
-                    <button
-                      onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
-                      className="flex items-center space-x-1 text-[11.5px] text-gray-500 hover:text-red-600 px-2.5 py-1 rounded border border-gray-200 hover:border-red-300 bg-white transition-colors cursor-pointer"
-                    >
-                      <Icons.Filter className="h-3 w-3" />
-                      <span>{currentCategoryFilter === '全部' ? '筛选类型' : currentCategoryFilter}</span>
-                      <Icons.ChevronDown className={`h-2.5 w-2.5 transition-transform ${showCategoryDropdown ? 'rotate-180' : ''}`} />
-                    </button>
-                    {showCategoryDropdown && (
-                      <div className="absolute right-0 top-full mt-1 w-28 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-20">
-                        {['全部', '收文', '发文', '签报', '印章', '休假'].map((cat) => (
-                          <button
-                            key={cat}
-                            onClick={() => {
-                              setCurrentCategoryFilter(cat);
-                              setShowCategoryDropdown(false);
-                            }}
-                            className={`w-full text-left px-3 py-1.5 text-[12px] hover:bg-red-50 hover:text-red-600 transition-colors ${
-                              currentCategoryFilter === cat ? 'bg-red-50 text-red-600 font-semibold' : 'text-gray-600'
-                            }`}
-                          >
-                            {cat}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
+                {searchTerm && (
+                  <span className="text-[11px] text-gray-400 italic">
+                    搜索: "{searchTerm}"
+                  </span>
+                )}
               </div>
 
               {/* List rows */}
-              <div className="flex-1 overflow-y-auto pr-1" style={{ maxHeight: viewMode === 'leader' ? '380px' : '480px', scrollbarWidth: 'thin', scrollbarColor: '#cbd5e1 transparent' }}>
+              <div className="flex-1 overflow-y-auto pr-1" style={{ maxHeight: viewMode === 'leader' ? '440px' : '540px', scrollbarWidth: 'thin', scrollbarColor: '#cbd5e1 transparent' }}>
                 {isRefreshing ? (
                   <div className="flex flex-col space-y-4 py-8 animate-pulse">
                     {[1, 2, 3, 4].map((n) => (
@@ -506,15 +425,29 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                       {/* Title row */}
                       <div className="flex items-start justify-between">
                         <div className="flex items-center space-x-3.5 pr-4">
-                          {/* 发起人头像图标 */}
-                          <Icons.UserCircle className={`h-7 w-7 shrink-0 transition-colors ${
-                            task.unread ? 'text-blue-500' : 'text-gray-300'
-                          }`} />
+                          {/* 发起人头像 - 图标+彩色底色 */}
+                          <div
+                            className={`h-8 w-8 shrink-0 rounded-full flex items-center justify-center shadow-sm transition-all ${
+                              task.unread
+                                ? 'bg-blue-100 text-blue-600'
+                                : 'bg-gray-100 text-gray-400'
+                            }`}
+                          >
+                            <Icons.UserCircle className="h-5 w-5" />
+                          </div>
 
-                          {/* Task category type tag — 统一蓝色 */}
-                          <span className="text-[11.5px] px-2.5 py-0.5 rounded border font-medium shrink-0 bg-blue-50 text-blue-700 border-blue-200">
-                            {task.type}
-                          </span>
+                          {/* Task category type tag — 收文/发文/签报统一蓝色，其他灰色 */}
+                          {(() => {
+                            const colorTypes = ['收文', '发文', '签报'];
+                            const colorClass = colorTypes.includes(task.type)
+                              ? 'bg-blue-50 text-blue-700 border-blue-200'
+                              : 'bg-gray-50 text-gray-500 border-gray-200';
+                            return (
+                              <span className={`text-[11.5px] px-2.5 py-0.5 rounded border font-medium shrink-0 ${colorClass}`}>
+                                {task.type}
+                              </span>
+                            );
+                          })()}
 
                           {/* Main Title */}
                           <h3 className="text-[13.5px] font-bold text-gray-800 group-hover:text-red-700 transition-colors line-clamp-1">
@@ -553,7 +486,78 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                 )}
               </div>
 
-            </div>
+              </div>{/* End white card */}
+
+            {/* 经营指标数据 — 仅领导视图 */}
+            {viewMode === 'leader' && (
+              <div className="bg-white rounded-lg shadow-xs border border-gray-100 p-5 space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-[13px] font-extrabold text-gray-800">经营指标数据</span>
+                  <span className="text-[10px] text-gray-400">数据更新至 {new Date().toLocaleDateString('zh-CN')}</span>
+                </div>
+
+                {/* 子 TAB */}
+                <div className="flex items-center space-x-1 border-b border-gray-100 pb-2">
+                  <button className="text-[12px] px-3 py-1 rounded-full bg-red-50 text-red-600 font-semibold border border-red-200 cursor-pointer">
+                    全行概况
+                  </button>
+                  <button
+                    onClick={() => addToast('「分行数据」模块将在正式版中开放，敬请期待。', 'info')}
+                    className="text-[12px] px-3 py-1 rounded-full text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
+                  >
+                    分行数据
+                  </button>
+                  <button
+                    onClick={() => addToast('「存贷趋势」模块将在正式版中开放，敬请期待。', 'info')}
+                    className="text-[12px] px-3 py-1 rounded-full text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
+                  >
+                    存贷趋势
+                  </button>
+                </div>
+
+                {/* 全行概况 — 4 指标卡片 */}
+                <div className="grid grid-cols-4 gap-4">
+                  {([
+                    { label: '资产总额', value: '6,892.35', unit: '亿元', upDown: '+12.58', upMonth: '+3.42', upYear: '+158.60', upYearRate: '+2.36%', color: 'blue' },
+                    { label: '存款总额', value: '5,104.87', unit: '亿元', upDown: '+8.93', upMonth: '+2.17', upYear: '+96.54', upYearRate: '+1.93%', color: 'emerald' },
+                    { label: '贷款总额', value: '3,721.60', unit: '亿元', upDown: '+15.26', upMonth: '+4.81', upYear: '+212.33', upYearRate: '+6.05%', color: 'orange' },
+                    { label: '营收收入', value: '187.52', unit: '亿元', upDown: '+3.18', upMonth: '+0.96', upYear: '+12.74', upYearRate: '+7.29%', color: 'purple' },
+                  ] as const).map((item) => {
+                    const colorMap = {
+                      blue:   { bg: 'bg-blue-50', text: 'text-blue-600', dot: 'bg-blue-500' },
+                      emerald:{ bg: 'bg-emerald-50', text: 'text-emerald-600', dot: 'bg-emerald-500' },
+                      orange: { bg: 'bg-orange-50', text: 'text-orange-600', dot: 'bg-orange-500' },
+                      purple: { bg: 'bg-purple-50', text: 'text-purple-600', dot: 'bg-purple-500' },
+                    };
+                    const c = colorMap[item.color];
+                    return (
+                      <div key={item.label} className={`${c.bg} rounded-lg p-3.5 border border-gray-100 space-y-2`}>
+                        <div className="flex items-center space-x-1.5">
+                          <span className={`h-1.5 w-1.5 rounded-full ${c.dot}`}></span>
+                          <span className="text-[11px] font-semibold text-gray-500">{item.label}</span>
+                        </div>
+                        <div className="flex items-baseline space-x-1">
+                          <span className={`text-xl font-extrabold ${c.text}`}>{item.value}</span>
+                          <span className="text-[11px] text-gray-400">{item.unit}</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-2 gap-y-0.5 text-[10px]">
+                          <span className="text-gray-400">比上日</span>
+                          <span className="text-gray-700 font-medium text-right">{item.upDown}</span>
+                          <span className="text-gray-400">比上月</span>
+                          <span className="text-gray-700 font-medium text-right">{item.upMonth}</span>
+                          <span className="text-gray-400">比年初</span>
+                          <span className="text-gray-700 font-medium text-right">{item.upYear}</span>
+                          <span className="text-gray-400">比年初增幅</span>
+                          <span className="text-red-500 font-semibold text-right">{item.upYearRate}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            </div>{/* End col-span-7 left column */}
 
             {/* Middle right section: Clock & Calendar (30%) */}
             <div className="col-span-3 flex flex-col space-y-4">
@@ -561,17 +565,29 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                 viewMode={viewMode}
                 events={calendarEvents}
                 onDeleteEvent={handleDeleteCalendarEvent}
+                slotBelowClock={viewMode === 'leader' ? (
+                  <div className="flex items-start space-x-2.5 bg-white border border-gray-100 rounded-lg p-3 shadow-xs select-none">
+                    <span className="bg-red-50 text-red-600 font-bold text-[10px] border border-red-200 py-0.5 px-2 rounded-full shrink-0 mt-0.5">
+                      公告
+                    </span>
+                    <p className="text-[11px] text-gray-500 leading-relaxed font-medium">
+                      关于2026年夏季防台风、电气安全用能维保巡检已经开始。请各网点注意关闭下班电源，严防雨水渗入。
+                    </p>
+                  </div>
+                ) : undefined}
               />
 
-              {/* 公告栏 */}
-              <div className="flex items-start space-x-2.5 bg-white border border-gray-100 rounded-lg p-3 shadow-xs select-none">
-                <span className="bg-red-50 text-red-600 font-bold text-[10px] border border-red-200 py-0.5 px-2 rounded-full shrink-0 mt-0.5">
-                  公告
-                </span>
-                <p className="text-[11px] text-gray-500 leading-relaxed font-medium">
-                  关于2026年夏季防台风、电气安全用能维保巡检已经开始。请各网点注意关闭下班电源，严防雨水渗入。
-                </p>
-              </div>
+              {/* 公告栏 — 标准视图下显示在 CalendarPanel 外 */}
+              {viewMode !== 'leader' && (
+                <div className="flex items-start space-x-2.5 bg-white border border-gray-100 rounded-lg p-3 shadow-xs select-none">
+                  <span className="bg-red-50 text-red-600 font-bold text-[10px] border border-red-200 py-0.5 px-2 rounded-full shrink-0 mt-0.5">
+                    公告
+                  </span>
+                  <p className="text-[11px] text-gray-500 leading-relaxed font-medium">
+                    关于2026年夏季防台风、电气安全用能维保巡检已经开始。请各网点注意关闭下班电源，严防雨水渗入。
+                  </p>
+                </div>
+              )}
 
               {/* 快捷入口 — 领导视图精简、每行3个，标准视图完整 */}
               <div className="bg-white rounded-lg p-4 shadow-xs border border-gray-100 space-y-3">
@@ -583,7 +599,7 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                         { id: 'new-process', label: '新建流程', icon: Icons.PlusCircle },
                         { id: 'leave', label: '请休假申请', icon: Icons.Calendar },
                         { id: 'trip', label: '出差申请', icon: Icons.Briefcase },
-                        { id: 'seal', label: '用印申请', icon: Icons.Stamp },
+                        { id: 'dashboard', label: '驾驶舱管理', icon: Icons.Gauge },
                         { id: 'my-initiated', label: '我发起的', icon: Icons.FolderOpen },
                       ]
                     : [

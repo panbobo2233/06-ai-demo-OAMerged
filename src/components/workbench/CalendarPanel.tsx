@@ -6,25 +6,26 @@ interface CalendarPanelProps {
   viewMode?: 'leader' | 'full';
   events: CalendarEvent[];
   onDeleteEvent?: (id: string) => void;
+  slotBelowClock?: React.ReactNode;
 }
 
 function getEncouragement(hour: number): string {
   if (hour >= 6 && hour < 9) {
-    return '一日之计在于晨，今天也要元气满满！☀️';
+    return '晨光不负赶路人，今天的冲刺从现在开始！☀️';
   } else if (hour >= 9 && hour < 12) {
-    return '专注高效，每一份努力都在成就更好的自己！💪';
+    return '业绩是干出来的，不是等出来的，全力出击！💪';
   } else if (hour >= 12 && hour < 14) {
-    return '午餐愉快，休息片刻再出发！🍵';
+    return '短暂的休整是为了下午更漂亮的冲锋！⚡';
   } else if (hour >= 14 && hour < 18) {
-    return '下午好，再接再厉，胜利在望！🚀';
+    return '拿下今天的里程碑，让每一步都算数！🚀';
   } else if (hour >= 18 && hour < 21) {
-    return '辛苦了，今天的付出终有回报！🌟';
+    return '披星戴月，每一份坚持都在拉开与平庸的距离！🌟';
   } else {
-    return '夜深了，注意休息，明天继续加油！🌙';
+    return '奋斗没有终点，今天的沉淀是明天的爆发！🔥';
   }
 }
 
-export default function CalendarPanel({ viewMode, events, onDeleteEvent }: CalendarPanelProps) {
+export default function CalendarPanel({ viewMode, events, onDeleteEvent, slotBelowClock }: CalendarPanelProps) {
   const isLeader = viewMode === 'leader';
   const [timeStr, setTimeStr] = useState('');
   const [dateStr, setDateStr] = useState('');
@@ -86,13 +87,12 @@ export default function CalendarPanel({ viewMode, events, onDeleteEvent }: Calen
           </p>
         </div>
 
-        {isLeader && (
-          <div className="flex items-center justify-end mt-1 space-x-2 text-[10px] text-gray-500">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>实时时钟</span>
-          </div>
-        )}
+
+
       </div>
+
+      {/* 时钟下方插槽（领导视图公告栏等） */}
+      {slotBelowClock}
 
       {/* 日程模块 */}
       <div className="bg-white rounded-lg p-4 shadow-xs border border-gray-100 space-y-3">

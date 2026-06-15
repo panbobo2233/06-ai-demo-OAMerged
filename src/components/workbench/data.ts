@@ -3,8 +3,8 @@ import { TaskItem, CalendarEvent, MenuItem } from './types';
 export const initialTasks: TaskItem[] = [
   {
     id: 'task-1',
-    title: '信息技术部第二团队周会',
-    category: '会议安排',
+    title: '关于报请审批《广州银行2020年第三季度信息科技建设项目立项申请》的签报',
+    category: '公文管理',
     type: '签报',
     urgent: true,
     sender: '郑成功',
@@ -17,7 +17,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'task-2',
-    title: '新OA测试sit合同模块001',
+    title: '关于申请采购新一代分布式核心银行系统SIT测试环境软硬件资源的签报',
     category: '公文管理',
     type: '签报',
     urgent: false,
@@ -31,7 +31,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'task-3',
-    title: '新OA测试sit合同模块002',
+    title: '广东省地方金融监督管理局关于加强银行业金融机构信息科技风险防控工作的指导意见（收文）',
     category: '公文管理',
     type: '收文',
     urgent: false,
@@ -45,7 +45,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'task-4',
-    title: '新OA测试sit合同模块003（休假审批流程）',
+    title: '关于金融科技部郑成功同志申请2020年度暑期带薪年休假的审批流程',
     category: '流程管理',
     type: '休假',
     urgent: false,
@@ -59,7 +59,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'task-5',
-    title: '新OA测试sit合同模块004',
+    title: '关于转发《中国人民银行办公厅关于进一步加强支付结算管理防范电信网络新型违法犯罪有关事项的通知》的收文',
     category: '流程管理',
     type: '收文',
     urgent: false,
@@ -73,8 +73,8 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'task-6',
-    title: '关于2020年度软件著作权申报流程的审核',
-    category: '流程管理',
+    title: '关于印发《广州银行股份有限公司2020年度软件著作权与专利技术申报工作方案》的通知',
+    category: '公文管理',
     type: '发文',
     urgent: true,
     sender: '杜甫',
@@ -87,7 +87,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'task-7',
-    title: '广州银行数据中心机房升级预算签报',
+    title: '关于天河数据中心B区高密机柜供电及智能冷却系统升级改造追加预算的申报签报',
     category: '公文管理',
     type: '签报',
     urgent: false,
@@ -101,7 +101,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'task-8',
-    title: '总行公章用印申请——天河支行新设网点备案材料',
+    title: '关于天河智慧支行新设网点备案材料使用总行公章用印的申请',
     category: '公文管理',
     type: '印章',
     urgent: false,
@@ -115,7 +115,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'task-9',
-    title: '科技部李明申请婚假休假流程审批',
+    title: '金融科技部员工李明同志申请婚假休假（15个自然日）的审批',
     category: '流程管理',
     type: '休假',
     urgent: false,
@@ -130,7 +130,7 @@ export const initialTasks: TaskItem[] = [
   // To-Read Section Items (待阅)
   {
     id: 'read-1',
-    title: '【重要通知】关于全行部署网络安全防护演练的通知',
+    title: '【重要通知】关于全行部署2020年第三季度网络安全红蓝对抗实战演练的紧急通知',
     category: '信息公告',
     type: '收文',
     urgent: true,
@@ -144,7 +144,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'read-2',
-    title: '2020年第二季度软件开发中心绩效优秀员工表彰决定',
+    title: '关于表彰2020年第二季度全行核心业务系统敏捷迭代开发突出贡献团队及个人的决定',
     category: '信息公告',
     type: '发文',
     urgent: false,
@@ -158,7 +158,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'read-3',
-    title: '信息技术规章：分行科技项目立项与采购审批指南',
+    title: '关于规范各分行级自研及采购科技项目立项审批额度与合规红线管理的签报指导意见',
     category: '规章制度',
     type: '签报',
     urgent: false,
@@ -172,7 +172,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'read-4',
-    title: '关于印发《广州银行知识产权资产管理办法(暂行)》的通知',
+    title: '关于印发《广州银行股份有限公司知识产权资产管理办法（暂行）》的通知',
     category: '规章制度',
     type: '发文',
     urgent: false,
@@ -186,7 +186,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'read-5',
-    title: '广州银行科技大楼食堂满意度调查结果汇总之阅处',
+    title: '关于2020年上半年度科技中心大楼食堂窗口服务满意度调查结果及后续整改举措的通报',
     category: '流程管理',
     type: '收文',
     urgent: false,
@@ -200,7 +200,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'read-6',
-    title: '全行印章使用管理办法修订版征求意见稿',
+    title: '关于征求《广州银行印章使用管理办法（2020修订版）》修改意见的通知',
     category: '规章制度',
     type: '印章',
     urgent: false,
@@ -214,7 +214,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'read-7',
-    title: '关于统一员工休假审批流程的补充规定',
+    title: '关于统一规范全行员工各类休假（年假、病假、婚假、产假）审批权限及流程的补充规定',
     category: '规章制度',
     type: '休假',
     urgent: false,
@@ -228,7 +228,7 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'read-8',
-    title: '广州银行2020年上半年经营分析报告',
+    title: '关于呈报《广州银行股份有限公司2020年上半年整体经营情况分析报告》的签报',
     category: '信息公告',
     type: '签报',
     urgent: false,

@@ -1,19 +1,15 @@
 import { AppItem, TaskItem, ContactItem, ScheduleItem, BannerSlide } from './types.ts';
 
-// We import the generated images
-import bannerImg from '/src/assets/images/gz_bank_banner_1781424849050.jpg';
-import techImg from '/src/assets/images/gz_bank_tech_slide_1781424897746.jpg';
-
 export const INITIAL_SLIDES: BannerSlide[] = [
   {
     id: 'slide-1',
-    image: bannerImg,
+    image: '/images/gz_bank_banner_1781424849050.jpg',
     subtitle: '广州银行企业文化理念 | 价值主张',
     title: '一起同行 一起共赢'
   },
   {
     id: 'slide-2',
-    image: techImg,
+    image: '/images/gz_bank_tech_slide_1781424897746.jpg',
     subtitle: '广州银行数字科技赋能 | 金融创新',
     title: '智数创新 臻微至远'
   }

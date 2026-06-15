@@ -8,12 +8,12 @@ const DEFAULT_TAB_KEY = 'oa_default_tab';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<PortalTab>(() => {
-    return (localStorage.getItem(DEFAULT_TAB_KEY) as PortalTab) || '快捷入口';
+    return (localStorage.getItem(DEFAULT_TAB_KEY) as PortalTab) || '工作台';
   });
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState<'leader' | 'full'>('leader');
   const [defaultTab, setDefaultTab] = useState<PortalTab>(() => {
-    return (localStorage.getItem(DEFAULT_TAB_KEY) as PortalTab) || '快捷入口';
+    return (localStorage.getItem(DEFAULT_TAB_KEY) as PortalTab) || '工作台';
   });
 
   const handleSetDefaultTab = () => {

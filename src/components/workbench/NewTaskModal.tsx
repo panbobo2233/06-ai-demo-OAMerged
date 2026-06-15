@@ -10,7 +10,7 @@ interface NewTaskModalProps {
 export default function NewTaskModal({ onClose, onSubmit }: NewTaskModalProps) {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('公文管理');
-  const [type, setType] = useState<'签报' | '发文' | '收文' | '其他'>('签报');
+  const [type, setType] = useState<'签报' | '发文' | '收文' | '印章' | '休假'>('签报');
   const [urgent, setUrgent] = useState(false);
   const [sender, setSender] = useState('郑成功');
   const [description, setDescription] = useState('');
@@ -95,7 +95,8 @@ export default function NewTaskModal({ onClose, onSubmit }: NewTaskModalProps) {
                 <option value="签报">签报 (QB)</option>
                 <option value="发文">发文 (FW)</option>
                 <option value="收文">收文 (SW)</option>
-                <option value="其他">请休假 / 用车申请 (QT)</option>
+                <option value="印章">印章 (YZ)</option>
+                <option value="休假">休假 (XJ)</option>
               </select>
             </div>
 

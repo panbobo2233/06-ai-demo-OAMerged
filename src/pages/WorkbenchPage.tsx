@@ -20,9 +20,10 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>(initialCalendarEvents);
 
   // Active filter states
-  const [currentSection, setCurrentSection] = useState<'待办' | '待阅'>('待办'); // Tab switcher: "待办 36" vs "待阅 50"
-  const [currentCategoryFilter, setCurrentCategoryFilter] = useState<string>('全部'); // sub filter buttons: 全部, 签报, 发文, 收文, 其他
-  const [currentStatusFilter, setCurrentStatusFilter] = useState<'all' | 'pending' | 'done'>('pending'); // 默认待处理
+  const [currentSection, setCurrentSection] = useState<'待办' | '待阅' | '已处理'>('待办');
+  const [currentCategoryFilter, setCurrentCategoryFilter] = useState<string>('全部'); // 全部, 收文, 发文, 签报, 印章, 休假
+  const [currentStatusFilter, setCurrentStatusFilter] = useState<'all' | 'pending' | 'done'>('pending');
+  const [processedFilter, setProcessedFilter] = useState<'已办' | '已阅'>('已办'); // 已处理Tab下的子筛选
   const [selectedSidebarMenu, setSelectedSidebarMenu] = useState<string>('flow');
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
 
@@ -80,7 +81,7 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
           id: 'task-refresh-sim',
           title: '【安全提示】数据机房防汛防雷紧急部署通告',
           category: '流程管理',
-          type: '其他',
+          type: '收文',
           urgent: true,
           sender: '总行安全管理委员会',
           department: '信息科技部',
@@ -121,13 +122,14 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
   };
 
   // --- Create Processes & Calendar Events ---
-  const handleNewTaskSubmit = (newTaskData: Omit<TaskItem, 'id' | 'time' | 'unread'>) => {
+  const handleNewTaskSubmit = (newTaskData: Omit<TaskItem, 'id' | 'time' | 'unread' | 'section'>) => {
     const formattedTask: TaskItem = {
       ...newTaskData,
       id: `task-${Date.now()}`,
       time: new Date().toISOString().replace('T', ' ').substring(0, 16),
       unread: true,
-      serialNumber: `GZ-${newTaskData.type === '签报' ? 'QB' : newTaskData.type === '发文' ? 'FW' : newTaskData.type === '收文' ? 'SW' : 'LC'}-2020-00${tasks.length + 5}`
+      section: '待办',
+      serialNumber: `GZ-${newTaskData.type === '签报' ? 'QB' : newTaskData.type === '发文' ? 'FW' : newTaskData.type === '收文' ? 'SW' : newTaskData.type === '印章' ? 'YZ' : 'XJ'}-2020-00${tasks.length + 5}`
     };
     setTasks((prev) => [formattedTask, ...prev]);
     addToast(`成功提交一份 [${newTaskData.type}] 至待办节点！主题: ${newTaskData.title.substring(0, 15)}...`, 'success');
@@ -162,12 +164,22 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
   const sectionDoneCount = sectionTasks.filter((t) => !t.unread).length;
   const statusLabels = currentSection === '待办'
     ? { pending: '待处理', done: '已办结' }
-    : { pending: '未阅读', done: '已查阅' };
+    : currentSection === '待阅'
+    ? { pending: '未阅读', done: '已查阅' }
+    : { pending: '已办', done: '已阅' }; // 已处理Tab
 
   // --- Filtering Task List ---
   const filteredTasks = tasks.filter((task) => {
-    // 1. Matches active section tab (待办/待阅)
-    if (task.section !== currentSection) return false;
+    // 1. Matches active section tab (待办/待阅/已处理)
+    if (currentSection === '已处理') {
+      // 已处理：所有 unread=false 的任务
+      if (task.unread) return false;
+      // 按子筛选细分：已办=原待办, 已阅=原待阅
+      if (processedFilter === '已办' && task.section !== '待办') return false;
+      if (processedFilter === '已阅' && task.section !== '待阅') return false;
+    } else {
+      if (task.section !== currentSection) return false;
+    }
 
     // 2. Matches category sub filter pills
     if (currentCategoryFilter !== '全部') {
@@ -196,7 +208,7 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
   });
 
   // 按类型优先级排序：签报 > 发文 > 收文 > 其他
-  const typeOrder: Record<string, number> = { '签报': 1, '发文': 2, '收文': 3, '其他': 4 };
+  const typeOrder: Record<string, number> = { '收文': 1, '发文': 2, '签报': 3, '印章': 4, '休假': 5 };
   const sortedTasks = [...filteredTasks].sort((a, b) => (typeOrder[a.type] || 5) - (typeOrder[b.type] || 5));
 
   return (
@@ -298,6 +310,39 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                       <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-red-600 rounded-full"></span>
                     )}
                   </button>
+
+                  {/* 已处理 Tab */}
+                  <button
+                    onClick={() => {
+                      setCurrentSection('已处理');
+                      setCurrentCategoryFilter('全部');
+                      setCurrentStatusFilter('pending');
+                      setProcessedFilter('已办');
+                      setShowCategoryDropdown(false);
+                    }}
+                    className={`flex items-baseline space-x-2 pb-1.5 transition-all text-left relative cursor-pointer group ${
+                      currentSection === '已处理'
+                        ? 'text-gray-900 font-extrabold text-[15.5px]'
+                        : 'text-gray-400 hover:text-gray-700 font-medium text-[14.5px]'
+                    }`}
+                  >
+                    <span className="flex items-center space-x-1.5">
+                      <span className="h-5 w-5 bg-emerald-500 text-white rounded flex items-center justify-center text-[10.5px] font-extrabold shadow-sm">已</span>
+                      <span>已处理</span>
+                    </span>
+
+                    <span className={`px-1.5 py-0.5 rounded-full text-[10.5px] font-black ${
+                      currentSection === '已处理'
+                        ? 'bg-emerald-100 text-emerald-700'
+                        : 'bg-slate-100 text-slate-500'
+                    }`}>
+                      {tasks.filter(t => !t.unread).length}
+                    </span>
+
+                    {currentSection === '已处理' && (
+                      <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-red-600 rounded-full"></span>
+                    )}
+                  </button>
                 </div>
 
                 {/* Right side Refresh Button */}
@@ -318,43 +363,81 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
               {/* Sub-status filter + 分类筛选下拉 */}
               <div className="flex items-center justify-between py-3 border-b border-gray-100">
                 <div className="flex items-center space-x-1">
-                  <button
-                    onClick={() => setCurrentStatusFilter('pending')}
-                    className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
-                      currentStatusFilter === 'pending'
-                        ? 'bg-red-50 text-red-600 font-semibold border border-red-200'
-                        : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                    }`}
-                  >
-                    {statusLabels.pending}
-                    <span className={`ml-1 text-[10.5px] ${
-                      currentStatusFilter === 'pending' ? 'text-red-400' : 'text-gray-400'
-                    }`}>
-                      {sectionPendingCount}
-                    </span>
-                  </button>
-                  <span className="text-gray-300 mx-1">|</span>
-                  <button
-                    onClick={() => setCurrentStatusFilter('done')}
-                    className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
-                      currentStatusFilter === 'done'
-                        ? 'bg-red-50 text-red-600 font-semibold border border-red-200'
-                        : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                    }`}
-                  >
-                    {statusLabels.done}
-                  </button>
-                  <span className="text-gray-300 mx-1">|</span>
-                  <button
-                    onClick={() => setCurrentStatusFilter('all')}
-                    className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
-                      currentStatusFilter === 'all'
-                        ? 'bg-red-50 text-red-600 font-semibold border border-red-200'
-                        : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                    }`}
-                  >
-                    全部
-                  </button>
+                  {currentSection === '已处理' ? (
+                    <>
+                      <button
+                        onClick={() => setProcessedFilter('已办')}
+                        className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
+                          processedFilter === '已办'
+                            ? 'bg-emerald-50 text-emerald-600 font-semibold border border-emerald-200'
+                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                        }`}
+                      >
+                        已办
+                        <span className={`ml-1 text-[10.5px] ${
+                          processedFilter === '已办' ? 'text-emerald-400' : 'text-gray-400'
+                        }`}>
+                          {tasks.filter(t => !t.unread && t.section === '待办').length}
+                        </span>
+                      </button>
+                      <span className="text-gray-300 mx-1">|</span>
+                      <button
+                        onClick={() => setProcessedFilter('已阅')}
+                        className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
+                          processedFilter === '已阅'
+                            ? 'bg-emerald-50 text-emerald-600 font-semibold border border-emerald-200'
+                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                        }`}
+                      >
+                        已阅
+                        <span className={`ml-1 text-[10.5px] ${
+                          processedFilter === '已阅' ? 'text-emerald-400' : 'text-gray-400'
+                        }`}>
+                          {tasks.filter(t => !t.unread && t.section === '待阅').length}
+                        </span>
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => setCurrentStatusFilter('pending')}
+                        className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
+                          currentStatusFilter === 'pending'
+                            ? 'bg-red-50 text-red-600 font-semibold border border-red-200'
+                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                        }`}
+                      >
+                        {statusLabels.pending}
+                        <span className={`ml-1 text-[10.5px] ${
+                          currentStatusFilter === 'pending' ? 'text-red-400' : 'text-gray-400'
+                        }`}>
+                          {sectionPendingCount}
+                        </span>
+                      </button>
+                      <span className="text-gray-300 mx-1">|</span>
+                      <button
+                        onClick={() => setCurrentStatusFilter('done')}
+                        className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
+                          currentStatusFilter === 'done'
+                            ? 'bg-red-50 text-red-600 font-semibold border border-red-200'
+                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                        }`}
+                      >
+                        {statusLabels.done}
+                      </button>
+                      <span className="text-gray-300 mx-1">|</span>
+                      <button
+                        onClick={() => setCurrentStatusFilter('all')}
+                        className={`text-[12px] px-3 py-1 rounded-full transition-all cursor-pointer ${
+                          currentStatusFilter === 'all'
+                            ? 'bg-red-50 text-red-600 font-semibold border border-red-200'
+                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                        }`}
+                      >
+                        全部
+                      </button>
+                    </>
+                  )}
                 </div>
 
                 <div className="flex items-center space-x-3">
@@ -374,7 +457,7 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                     </button>
                     {showCategoryDropdown && (
                       <div className="absolute right-0 top-full mt-1 w-28 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-20">
-                        {['全部', '签报', '发文', '收文', '其他'].map((cat) => (
+                        {['全部', '收文', '发文', '签报', '印章', '休假'].map((cat) => (
                           <button
                             key={cat}
                             onClick={() => {
@@ -395,16 +478,17 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
               </div>
 
               {/* List rows */}
-              <div className="flex-1 space-y-[1px] divide-y divide-gray-100">
+              <div className="flex-1 overflow-y-auto pr-1" style={{ maxHeight: viewMode === 'leader' ? '380px' : '480px', scrollbarWidth: 'thin', scrollbarColor: '#cbd5e1 transparent' }}>
                 {isRefreshing ? (
                   <div className="flex flex-col space-y-4 py-8 animate-pulse">
                     {[1, 2, 3, 4].map((n) => (
                       <div key={n} className="flex flex-col space-y-2 px-3 py-2.5">
                         <div className="flex items-center space-x-3">
+                          <div className="h-7 w-7 bg-gray-200 rounded-full"></div>
                           <div className="h-4.5 w-14 bg-gray-200 rounded"></div>
                           <div className="h-4.5 w-3/4 bg-gray-200 rounded"></div>
                         </div>
-                        <div className="h-3 w-1/3 bg-gray-200 rounded ml-17 mt-1"></div>
+                        <div className="h-3 w-1/3 bg-gray-200 rounded ml-11 mt-1"></div>
                       </div>
                     ))}
                   </div>
@@ -414,7 +498,7 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                     <p className="text-[12px] italic">没有找到符合该类别的流程条目</p>
                   </div>
                 ) : (
-                  sortedTasks.slice(0, 5).map((task) => (
+                  sortedTasks.map((task) => (
                     <div
                       key={task.id}
                       className="group flex flex-col justify-center py-4 px-3 hover:bg-red-50/10 border-l-2 border-transparent hover:border-red-500 rounded-xs"
@@ -422,27 +506,16 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                       {/* Title row */}
                       <div className="flex items-start justify-between">
                         <div className="flex items-center space-x-3.5 pr-4">
-                          {/* Unread circle dot */}
-                          <span className={`h-2 w-2 rounded-full shrink-0 transition-transform group-hover:scale-125 ${
-                            task.unread ? 'bg-amber-500 shadow-sm' : 'bg-transparent'
+                          {/* 发起人头像图标 */}
+                          <Icons.UserCircle className={`h-7 w-7 shrink-0 transition-colors ${
+                            task.unread ? 'text-blue-500' : 'text-gray-300'
                           }`} />
-                          
-                          {/* Task category type tag */}
-                          {(() => {
-                            const typeColors: Record<string, string> = {
-                              '签报': 'bg-blue-50 text-blue-700 border-blue-200',
-                              '发文': 'bg-amber-50 text-amber-700 border-amber-200',
-                              '收文': 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                            };
-                            return (
-                              <span className={`text-[11.5px] px-2.5 py-0.5 rounded border font-medium shrink-0 ${
-                                typeColors[task.type] || 'bg-slate-50 text-slate-500 border-slate-200'
-                              }`}>
-                                {task.type}
-                              </span>
-                            );
-                          })()}
-                          
+
+                          {/* Task category type tag — 统一蓝色 */}
+                          <span className="text-[11.5px] px-2.5 py-0.5 rounded border font-medium shrink-0 bg-blue-50 text-blue-700 border-blue-200">
+                            {task.type}
+                          </span>
+
                           {/* Main Title */}
                           <h3 className="text-[13.5px] font-bold text-gray-800 group-hover:text-red-700 transition-colors line-clamp-1">
                             {task.title}
@@ -455,7 +528,7 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                             </span>
                           )}
                         </div>
-                        
+
                         {/* Right chevron and mouse hover pointer */}
                         <div className="flex items-center text-gray-300 group-hover:text-red-500 transition-colors shrink-0">
                           <Icons.ChevronRight className="h-4 w-4" />
@@ -463,7 +536,7 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                       </div>
 
                       {/* Subtitles metadata row */}
-                      <div className="flex items-center space-x-3 text-[12px] text-gray-400 pl-5.5 mt-2">
+                      <div className="flex items-center space-x-3 text-[12px] text-gray-400 pl-10.5 mt-2">
                         <span className="text-gray-500 font-medium leading-none">
                           {task.department || '广州银行'}
                         </span>
@@ -478,31 +551,39 @@ export default function WorkbenchPage({ searchTerm, onSearch, viewMode }: Workbe
                     </div>
                   ))
                 )}
-                {sortedTasks.length > 5 && (
-                  <div className="flex justify-center pt-2">
-                    <button className="text-[12px] text-gray-400 hover:text-red-500 cursor-pointer transition-colors">
-                      查看更多 ({sortedTasks.length - 5}+)
-                    </button>
-                  </div>
-                )}
               </div>
 
             </div>
 
             {/* Middle right section: Clock & Calendar (30%) */}
             <div className="col-span-3 flex flex-col space-y-4">
-              <CalendarPanel viewMode={viewMode} />
+              <CalendarPanel
+                viewMode={viewMode}
+                events={calendarEvents}
+                onDeleteEvent={handleDeleteCalendarEvent}
+              />
 
-              {/* 快捷入口 — 领导视图精简，标准视图完整 */}
+              {/* 公告栏 */}
+              <div className="flex items-start space-x-2.5 bg-white border border-gray-100 rounded-lg p-3 shadow-xs select-none">
+                <span className="bg-red-50 text-red-600 font-bold text-[10px] border border-red-200 py-0.5 px-2 rounded-full shrink-0 mt-0.5">
+                  公告
+                </span>
+                <p className="text-[11px] text-gray-500 leading-relaxed font-medium">
+                  关于2026年夏季防台风、电气安全用能维保巡检已经开始。请各网点注意关闭下班电源，严防雨水渗入。
+                </p>
+              </div>
+
+              {/* 快捷入口 — 领导视图精简、每行3个，标准视图完整 */}
               <div className="bg-white rounded-lg p-4 shadow-xs border border-gray-100 space-y-3">
                 <span className="text-[12px] font-bold text-gray-500">快捷入口</span>
-                <div className={`grid gap-2 ${viewMode === 'leader' ? 'grid-cols-2' : 'grid-cols-3'}`}>
+                <div className="grid grid-cols-3 gap-2">
                   {(viewMode === 'leader'
                     ? [
                         { id: 'directory', label: '通讯录', icon: Icons.Users },
                         { id: 'new-process', label: '新建流程', icon: Icons.PlusCircle },
                         { id: 'leave', label: '请休假申请', icon: Icons.Calendar },
                         { id: 'trip', label: '出差申请', icon: Icons.Briefcase },
+                        { id: 'seal', label: '用印申请', icon: Icons.Stamp },
                         { id: 'my-initiated', label: '我发起的', icon: Icons.FolderOpen },
                       ]
                     : [

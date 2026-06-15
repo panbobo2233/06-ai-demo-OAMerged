@@ -2,7 +2,7 @@ export interface TaskItem {
   id: string;
   title: string;
   category: string; // e.g. "会议安排", "公文管理", "流程管理"
-  type: '签报' | '发文' | '收文' | '其他';
+  type: '签报' | '发文' | '收文' | '印章' | '休假';
   urgent: boolean;
   sender: string;
   department?: string; // 发起部门

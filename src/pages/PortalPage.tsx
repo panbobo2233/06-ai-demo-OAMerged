@@ -62,15 +62,6 @@ export default function PortalPage({ searchTerm, onSearch }: PortalPageProps) {
           onOpenAllApps={() => {}}
         />
 
-        {/* Alert bulletin */}
-        <div className="flex items-center space-x-3 bg-white border border-gray-100 rounded-xl p-3 px-4 shadow-sm select-none">
-          <span className="bg-red-50 text-brand-red font-bold text-[10px] uppercase border border-red-200 py-0.5 px-2 rounded-full">
-            【公告】
-          </span>
-          <p className="text-[11px] text-gray-500 truncate flex-1 font-medium">
-            关于2026年夏季防台风、电气安全用能维保巡检已经开始。请各网点注意关闭下班电源，严防雨水渗入。
-          </p>
-        </div>
       </main>
 
       {/* Footer */}

@@ -26,7 +26,7 @@ export const initialTasks: TaskItem[] = [
     time: '2020-07-28 14:10',
     section: '待办',
     unread: true,
-    serialNumber: 'GZ-OA-SIT-001',
+    serialNumber: 'GZ-QB-SIT-001',
     description: '关于广州银行新一代数字化协同办公系统（OA）SIT测试合同审批及服务交付商准入资格审查报告。'
   },
   {
@@ -45,16 +45,16 @@ export const initialTasks: TaskItem[] = [
   },
   {
     id: 'task-4',
-    title: '新OA测试sit合同模块003',
+    title: '新OA测试sit合同模块003（休假审批流程）',
     category: '流程管理',
-    type: '其他', // 休假审批 is classified as '其他' or process
+    type: '休假',
     urgent: false,
     sender: '郑成功',
     department: '金融科技部',
     time: '2020-07-28 09:30',
     section: '待办',
     unread: true,
-    serialNumber: 'GZ-LC-VAC-003',
+    serialNumber: 'GZ-XJ-VAC-003',
     description: '总行软件开发中心郑成功关于2020年暑期带薪年休假申请流程。共计5个工作日。'
   },
   {
@@ -71,7 +71,6 @@ export const initialTasks: TaskItem[] = [
     serialNumber: 'GZ-SW-SIT-004',
     description: '软件外包开发服务框架协议（sit环境第三方对接模块）的技术说明材料及收签发。'
   },
-  // Additional Mock Data to show interactive tab filters
   {
     id: 'task-6',
     title: '关于2020年度软件著作权申报流程的审核',
@@ -100,33 +99,61 @@ export const initialTasks: TaskItem[] = [
     serialNumber: 'GZ-QB-2020-0039',
     description: '关于天河数据中心B区高密机柜供电与智能冷却系统升级改造追加预算的申报意见。'
   },
-  // To-Read Section Items (待阅) - Total 50 items represented
+  {
+    id: 'task-8',
+    title: '总行公章用印申请——天河支行新设网点备案材料',
+    category: '公文管理',
+    type: '印章',
+    urgent: false,
+    sender: '王建国',
+    department: '总行办公室',
+    time: '2020-07-26 14:20',
+    section: '待办',
+    unread: true,
+    serialNumber: 'GZ-YZ-2020-0056',
+    description: '天河支行申请使用总行公章对新设智慧网点备案材料进行用印，需办公室审批。'
+  },
+  {
+    id: 'task-9',
+    title: '科技部李明申请婚假休假流程审批',
+    category: '流程管理',
+    type: '休假',
+    urgent: false,
+    sender: '李明',
+    department: '金融科技部',
+    time: '2020-07-26 09:15',
+    section: '待办',
+    unread: true,
+    serialNumber: 'GZ-XJ-2020-0088',
+    description: '金融科技部员工李明申请婚假休假，共计15个自然日，需部门负责人审批。'
+  },
+  // To-Read Section Items (待阅)
   {
     id: 'read-1',
     title: '【重要通知】关于全行部署网络安全防护演练的通知',
     category: '信息公告',
-    type: '其他',
+    type: '收文',
     urgent: true,
     sender: '系统管理员',
     department: '信息科技部',
     time: '2020-07-29 09:00',
     section: '待阅',
     unread: true,
-    serialNumber: 'GZ-GG-2020-089',
+    serialNumber: 'GZ-SW-2020-089',
     description: '根据监管部门关于提升金融信息系统网络对抗防御水平的要求，我行将于本周五晚开展蓝军渗透对抗实战模拟。请各系统运维保障人员到岗值班。'
   },
   {
     id: 'read-2',
     title: '2020年第二季度软件开发中心绩效优秀员工表彰决定',
     category: '信息公告',
-    type: '其他',
+    type: '发文',
     urgent: false,
     sender: '人力资源部',
     department: '人力资源部',
     time: '2020-07-28 17:00',
     section: '待阅',
     unread: true,
-    serialNumber: 'GZ-RS-2020-045',
+    serialNumber: 'GZ-FW-2020-045',
     description: '表彰在二季度全行核心业务群组敏捷迭代开发、零风险上线中做出突出贡献的一线软件工程师名单。'
   },
   {
@@ -140,7 +167,7 @@ export const initialTasks: TaskItem[] = [
     time: '2020-07-28 10:15',
     section: '待阅',
     unread: true,
-    serialNumber: 'GZ-GZ-2020-012',
+    serialNumber: 'GZ-QB-2020-012',
     description: '针对各分行级自研或采购的中小科技项目，进一步规范审批额度流程及风险合规红线规范。'
   },
   {
@@ -170,7 +197,49 @@ export const initialTasks: TaskItem[] = [
     unread: false,
     serialNumber: 'GZ-SW-2020-154',
     description: '2020年上半年度科技开发中心大楼食堂窗口及服务保障满意度调查反馈结果与后续改良举措说明。'
-  }
+  },
+  {
+    id: 'read-6',
+    title: '全行印章使用管理办法修订版征求意见稿',
+    category: '规章制度',
+    type: '印章',
+    urgent: false,
+    sender: '总行办公室',
+    department: '总行办公室',
+    time: '2020-07-25 10:00',
+    section: '待阅',
+    unread: true,
+    serialNumber: 'GZ-YZ-2020-0032',
+    description: '关于修订全行印章使用管理办法的征求意见稿，涉及公章、合同章、财务章的使用权限变更。'
+  },
+  {
+    id: 'read-7',
+    title: '关于统一员工休假审批流程的补充规定',
+    category: '规章制度',
+    type: '休假',
+    urgent: false,
+    sender: '人力资源部',
+    department: '人力资源部',
+    time: '2020-07-24 16:45',
+    section: '待阅',
+    unread: true,
+    serialNumber: 'GZ-XJ-2020-0019',
+    description: '针对全行员工各类休假（年假、病假、婚假、产假）的审批权限和流程进行统一规范的补充说明。'
+  },
+  {
+    id: 'read-8',
+    title: '广州银行2020年上半年经营分析报告',
+    category: '信息公告',
+    type: '签报',
+    urgent: false,
+    sender: '战略规划部',
+    department: '战略规划部',
+    time: '2020-07-24 09:00',
+    section: '待阅',
+    unread: false,
+    serialNumber: 'GZ-QB-2020-0100',
+    description: '2020年上半年全行经营数据汇总分析，包含存贷款规模、利润指标、不良率等核心经营数据。'
+  },
 ];
 
 export const initialCalendarEvents: CalendarEvent[] = [
@@ -187,7 +256,14 @@ export const initialCalendarEvents: CalendarEvent[] = [
     title: '我的日历 需求说明书',
     type: '我的日历',
     description: '审核交付关于《广州银行数据可视化决策白皮书设计说明》的草稿规范与接口契约。'
-  }
+  },
+  {
+    id: 'cal-3',
+    timeRange: '14:00-15:30',
+    title: '信息技术部周例会',
+    type: '会议安排',
+    description: '每周技术团队站会，同步各项目进度、技术难点及资源调配。'
+  },
 ];
 
 export const menuItems: MenuItem[] = [

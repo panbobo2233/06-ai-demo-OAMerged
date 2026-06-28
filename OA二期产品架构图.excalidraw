@@ -1,0 +1,615 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+
+    {
+      "id": "title",
+      "type": "text", "x": 380, "y": 18, "width": 750, "height": 48,
+      "text": "广州银行 OA二期 · 产品架构图", "fontSize": 34, "fontFamily": 1, "textAlign": "center",
+      "baseline": 38, "angle": 0, "strokeColor": "#1e1e1e", "roughness": 0, "opacity": 100,
+      "backgroundColor": "transparent", "fillStyle": "solid", "strokeWidth": 1,
+      "groupIds": [], "roundness": null, "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "subtitle",
+      "type": "text", "x": 420, "y": 60, "width": 670, "height": 22,
+      "text": "五层架构 · 模块名称与蓝凌EKP功能清单报价项对齐 · 红色=P0 蓝色=P1 灰色=暂缓",
+      "fontSize": 13, "fontFamily": 1, "textAlign": "center",
+      "baseline": 16, "angle": 0, "strokeColor": "#868e96", "roughness": 0, "opacity": 100,
+      "backgroundColor": "transparent", "fillStyle": "solid", "strokeWidth": 1,
+      "groupIds": [], "roundness": null, "isDeleted": false, "boundElements": null, "updated": 1, "link": null, "locked": false
+    },
+
+    {
+      "id": "l1-bg", "type": "rectangle", "x": 120, "y": 96, "width": 1350, "height": 88,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#fff5f5",
+      "fillStyle": "solid", "strokeWidth": 2.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l1-label", "type": "rectangle", "x": 30, "y": 108, "width": 78, "height": 64,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#e03131",
+      "fillStyle": "solid", "strokeWidth": 2, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false,
+      "boundElements": [{ "id": "l1-label-t", "type": "text" }], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l1-label-t", "type": "text", "x": 36, "y": 122, "width": 66, "height": 36,
+      "text": "P0\n用户\n入口", "fontSize": 13, "fontFamily": 1, "textAlign": "center",
+      "baseline": 30, "containerId": "l1-label", "isDeleted": false,
+      "strokeColor": "#ffffff", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l1-b1", "type": "rectangle", "x": 140, "y": 114, "width": 340, "height": 52,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#ffe3e3",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l1-b1-t", "type": "text", "x": 170, "y": 122, "width": 280, "height": 36,
+      "text": "PC Web 三门户\n→ 界面优化UI视觉效果更新（定制）\n→ 个性化主题/视图切换/自定义布局（定制）",
+      "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 30, "strokeColor": "#e03131", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l1-b2", "type": "rectangle", "x": 500, "y": 114, "width": 280, "height": 52,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l1-b2-t", "type": "text", "x": 520, "y": 122, "width": 240, "height": 36,
+      "text": "移动端入口（🔴 待定）\n→ 钉钉/企微/飞书/WeLink 接入组件（4选1）\n→ 或 KK 移动EKP",
+      "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 30, "strokeColor": "#868e96", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l1-b3", "type": "rectangle", "x": 800, "y": 114, "width": 300, "height": 52,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#d0ebff",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l1-b3-t", "type": "text", "x": 830, "y": 122, "width": 240, "height": 36,
+      "text": "统一入口 + 后台配置\n→ SSO组件（服务器端+用户端）· P0\n→ 后台自定义配置（定制）· P1",
+      "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 30, "strokeColor": "#1971c2", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l2-bg", "type": "rectangle", "x": 120, "y": 210, "width": 1350, "height": 310,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#f0f8ff",
+      "fillStyle": "solid", "strokeWidth": 2.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-label", "type": "rectangle", "x": 30, "y": 310, "width": 78, "height": 64,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#1971c2",
+      "fillStyle": "solid", "strokeWidth": 2, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false,
+      "boundElements": [{ "id": "l2-label-t", "type": "text" }], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-label-t", "type": "text", "x": 36, "y": 324, "width": 66, "height": 36,
+      "text": "业务\n应用", "fontSize": 14, "fontFamily": 1, "textAlign": "center",
+      "baseline": 30, "containerId": "l2-label", "isDeleted": false,
+      "strokeColor": "#ffffff", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l2-b1", "type": "rectangle", "x": 140, "y": 226, "width": 310, "height": 135,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#ffffff",
+      "fillStyle": "solid", "strokeWidth": 2, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b1-hdr", "type": "rectangle", "x": 140, "y": 226, "width": 310, "height": 30,
+      "strokeColor": "#e03131", "backgroundColor": "#e03131", "fillStyle": "solid", "strokeWidth": 0,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false,
+      "boundElements": [{ "id": "l2-b1-hdr-t", "type": "text" }], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b1-hdr-t", "type": "text", "x": 170, "y": 232, "width": 250, "height": 18,
+      "text": "公文域 · P0", "fontSize": 14, "fontFamily": 1, "textAlign": "center",
+      "baseline": 14, "containerId": "l2-b1-hdr", "isDeleted": false,
+      "strokeColor": "#ffffff", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b1-v", "type": "text", "x": 155, "y": 264, "width": 280, "height": 16,
+      "text": "📦 公文管理（政企版）🔴待定", "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#e03131", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b1-items", "type": "text", "x": 155, "y": 284, "width": 280, "height": 65,
+      "text": "收文 · 发文 · 签报 · 公文交换\n→ 公文交换平台 + 接入许可\n→ 智能公文对接组件（方寸智能）\n→ 电子签章集成\n🔧 收文传阅扩展至分支行（自研）",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 60, "strokeColor": "#495057", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l2-b2", "type": "rectangle", "x": 470, "y": 226, "width": 310, "height": 135,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#ffffff",
+      "fillStyle": "solid", "strokeWidth": 2, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b2-hdr", "type": "rectangle", "x": 470, "y": 226, "width": 310, "height": 30,
+      "strokeColor": "#e03131", "backgroundColor": "#e03131", "fillStyle": "solid", "strokeWidth": 0,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false,
+      "boundElements": [{ "id": "l2-b2-hdr-t", "type": "text" }], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b2-hdr-t", "type": "text", "x": 500, "y": 232, "width": 250, "height": 18,
+      "text": "流程域 · P0", "fontSize": 14, "fontFamily": 1, "textAlign": "center",
+      "baseline": 14, "containerId": "l2-b2-hdr", "isDeleted": false,
+      "strokeColor": "#ffffff", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b2-v", "type": "text", "x": 485, "y": 264, "width": 280, "height": 16,
+      "text": "📦 流程管理", "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#1971c2", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b2-items", "type": "text", "x": 485, "y": 284, "width": 280, "height": 65,
+      "text": "审批 · 传阅 · 驳回 · 催办 · 打印 · 关联\n→ 流程分析（统计/效率分析）\n→ 短信集成组件（超时提醒）\n→ 低代码设计平台（基础版）\n🔧 通讯录群组改造（自研）",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 60, "strokeColor": "#495057", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l2-b3", "type": "rectangle", "x": 800, "y": 226, "width": 310, "height": 135,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#ffffff",
+      "fillStyle": "solid", "strokeWidth": 2, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b3-hdr", "type": "rectangle", "x": 800, "y": 226, "width": 310, "height": 30,
+      "strokeColor": "#e03131", "backgroundColor": "#e03131", "fillStyle": "solid", "strokeWidth": 0,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false,
+      "boundElements": [{ "id": "l2-b3-hdr-t", "type": "text" }], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b3-hdr-t", "type": "text", "x": 830, "y": 232, "width": 250, "height": 18,
+      "text": "会议/督办域 · P0", "fontSize": 14, "fontFamily": 1, "textAlign": "center",
+      "baseline": 14, "containerId": "l2-b3-hdr", "isDeleted": false,
+      "strokeColor": "#ffffff", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b3-v", "type": "text", "x": 815, "y": 264, "width": 280, "height": 16,
+      "text": "📦 会议管理（政企版）+ 督办管理（政企版）", "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#1971c2", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b3-items", "type": "text", "x": 815, "y": 284, "width": 280, "height": 65,
+      "text": "议题管理 · 会议方案 · 纪要 · 会议日历\n会议室预定 · 会议统计\n督办台账 · 领导批示 · 督办公文联动\n→ 挂接公文管理（政企版）",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 60, "strokeColor": "#495057", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l2-b4", "type": "rectangle", "x": 140, "y": 378, "width": 310, "height": 125,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#ffffff",
+      "fillStyle": "solid", "strokeWidth": 2, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b4-hdr", "type": "rectangle", "x": 140, "y": 378, "width": 310, "height": 28,
+      "strokeColor": "#1971c2", "backgroundColor": "#1971c2", "fillStyle": "solid", "strokeWidth": 0,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false,
+      "boundElements": [{ "id": "l2-b4-hdr-t", "type": "text" }], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b4-hdr-t", "type": "text", "x": 170, "y": 383, "width": 250, "height": 18,
+      "text": "信息门户域 · P1", "fontSize": 14, "fontFamily": 1, "textAlign": "center",
+      "baseline": 14, "containerId": "l2-b4-hdr", "isDeleted": false,
+      "strokeColor": "#ffffff", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b4-v1", "type": "text", "x": 155, "y": 414, "width": 280, "height": 16,
+      "text": "📦 通知公告", "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#1971c2", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b4-v2", "type": "text", "x": 155, "y": 432, "width": 280, "height": 16,
+      "text": "📦 规范制度", "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#1971c2", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b4-items", "type": "text", "x": 155, "y": 452, "width": 280, "height": 40,
+      "text": "→ WPS文档中台对接（在线编辑/预览）\n→ 文档集成（WPS文档中台）✅已确定",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 34, "strokeColor": "#495057", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l2-b5", "type": "rectangle", "x": 470, "y": 378, "width": 310, "height": 125,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#ffffff",
+      "fillStyle": "solid", "strokeWidth": 2, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b5-hdr", "type": "rectangle", "x": 470, "y": 378, "width": 310, "height": 28,
+      "strokeColor": "#1971c2", "backgroundColor": "#1971c2", "fillStyle": "solid", "strokeWidth": 0,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false,
+      "boundElements": [{ "id": "l2-b5-hdr-t", "type": "text" }], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b5-hdr-t", "type": "text", "x": 500, "y": 383, "width": 250, "height": 18,
+      "text": "数据/看板域 · P1", "fontSize": 14, "fontFamily": 1, "textAlign": "center",
+      "baseline": 14, "containerId": "l2-b5-hdr", "isDeleted": false,
+      "strokeColor": "#ffffff", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b5-v", "type": "text", "x": 485, "y": 414, "width": 280, "height": 16,
+      "text": "📦 图表中心", "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#1971c2", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b5-items", "type": "text", "x": 485, "y": 434, "width": 280, "height": 60,
+      "text": "自定义图表引擎（表单/流程数据可视化）\n→ 报表集成（帆软/SmartBI等）\n→ 流程分析（效率报表）\n🔧 管理驾驶舱 / 领导数据看板（定制）",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 54, "strokeColor": "#495057", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l2-b6", "type": "rectangle", "x": 800, "y": 378, "width": 310, "height": 125,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b6-hdr", "type": "rectangle", "x": 800, "y": 378, "width": 310, "height": 28,
+      "strokeColor": "#868e96", "backgroundColor": "#868e96", "fillStyle": "solid", "strokeWidth": 0,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false,
+      "boundElements": [{ "id": "l2-b6-hdr-t", "type": "text" }], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l2-b6-hdr-t", "type": "text", "x": 830, "y": 383, "width": 250, "height": 18,
+      "text": "扩展应用 · 暂缓/P2", "fontSize": 14, "fontFamily": 1, "textAlign": "center",
+      "baseline": 14, "containerId": "l2-b6-hdr", "isDeleted": false,
+      "strokeColor": "#ffffff", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b6-v1", "type": "text", "x": 815, "y": 414, "width": 280, "height": 16,
+      "text": "📦 党建管理 · 📦 工会管理", "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#868e96", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b6-v2", "type": "text", "x": 815, "y": 434, "width": 280, "height": 16,
+      "text": "📦 三重一大管理 🔴", "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#868e96", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l2-b6-items", "type": "text", "x": 815, "y": 454, "width": 280, "height": 40,
+      "text": "📦 固资管理 · 📦 工作总结 · 📦 办公用品\n🔧 冗余流程剔除或合并（定制）",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 34, "strokeColor": "#868e96", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l3-bg", "type": "rectangle", "x": 120, "y": 546, "width": 1350, "height": 82,
+      "angle": 0, "strokeColor": "#2f9e44", "backgroundColor": "#f0fdf4",
+      "fillStyle": "solid", "strokeWidth": 2.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l3-label", "type": "rectangle", "x": 30, "y": 556, "width": 78, "height": 62,
+      "angle": 0, "strokeColor": "#2f9e44", "backgroundColor": "#2f9e44",
+      "fillStyle": "solid", "strokeWidth": 2, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false,
+      "boundElements": [{ "id": "l3-label-t", "type": "text" }], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l3-label-t", "type": "text", "x": 36, "y": 570, "width": 66, "height": 34,
+      "text": "AI\n智能体", "fontSize": 14, "fontFamily": 1, "textAlign": "center",
+      "baseline": 28, "containerId": "l3-label", "isDeleted": false,
+      "strokeColor": "#ffffff", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l3-b1", "type": "rectangle", "x": 140, "y": 564, "width": 380, "height": 48,
+      "angle": 0, "strokeColor": "#2f9e44", "backgroundColor": "#d3f9d8",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l3-b1-t", "type": "text", "x": 165, "y": 572, "width": 330, "height": 32,
+      "text": "📦 公文助手 · P0\n→ 智能公文对接组件（方寸智能）\n智能拟稿 · 核稿纠错 · 附件摘要 · 辅助填单",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 26, "strokeColor": "#2f9e44", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l3-b2", "type": "rectangle", "x": 545, "y": 564, "width": 380, "height": 48,
+      "angle": 0, "strokeColor": "#2f9e44", "backgroundColor": "#d3f9d8",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l3-b2-t", "type": "text", "x": 565, "y": 572, "width": 340, "height": 32,
+      "text": "📦 流程助手 · P0\n审批意见总结 · 智能填单 · AI写作辅助 · 流程发起\n→ 需购买流程管理（依赖）",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 26, "strokeColor": "#2f9e44", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l3-b3", "type": "rectangle", "x": 950, "y": 564, "width": 250, "height": 48,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l3-b3-t", "type": "text", "x": 970, "y": 572, "width": 210, "height": 32,
+      "text": "📦 督办助手 · P1\n智能问答 · 督办报告生成\n→ 需购买督办管理（政企版）",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 26, "strokeColor": "#868e96", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "l3-note", "type": "text", "x": 1230, "y": 574, "width": 220, "height": 28,
+      "text": "📦 知识仓库助手 · ⏸️暂缓\n（知识仓库本体未纳入，缺底座）",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 22, "strokeColor": "#adb5bd", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l4-bg", "type": "rectangle", "x": 120, "y": 654, "width": 1350, "height": 82,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid", "strokeWidth": 2.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l4-label", "type": "rectangle", "x": 30, "y": 664, "width": 78, "height": 62,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "#495057",
+      "fillStyle": "solid", "strokeWidth": 2, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false,
+      "boundElements": [{ "id": "l4-label-t", "type": "text" }], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l4-label-t", "type": "text", "x": 36, "y": 678, "width": 66, "height": 34,
+      "text": "平台\n底座", "fontSize": 14, "fontFamily": 1, "textAlign": "center",
+      "baseline": 28, "containerId": "l4-label", "isDeleted": false,
+      "strokeColor": "#ffffff", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l4-b1", "type": "rectangle", "x": 140, "y": 672, "width": 280, "height": 46,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#ffe3e3",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l4-b1-t", "type": "text", "x": 160, "y": 682, "width": 240, "height": 26,
+      "text": "📦 EKP核心平台（必选）· P0\n组织架构 · 门户管理 · 移动工作台 · 新闻/任务/黄页",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 20, "strokeColor": "#e03131", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l4-b2", "type": "rectangle", "x": 440, "y": 672, "width": 250, "height": 46,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#ffe3e3",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l4-b2-t", "type": "text", "x": 460, "y": 682, "width": 210, "height": 26,
+      "text": "📦 WPS文档中台对接 · P0 ✅\n在线预览/编辑/转换 · 2套EKP族对接",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 20, "strokeColor": "#e03131", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l4-b3", "type": "rectangle", "x": 710, "y": 672, "width": 240, "height": 46,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#ffe3e3",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l4-b3-t", "type": "text", "x": 730, "y": 682, "width": 200, "height": 26,
+      "text": "📦 SSO组件（服务器+客户端）· P0\n统一登录 · 多系统单点 · 日志/预警",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 20, "strokeColor": "#e03131", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l4-b4", "type": "rectangle", "x": 970, "y": 672, "width": 240, "height": 46,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#d0ebff",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l4-b4-t", "type": "text", "x": 990, "y": 682, "width": 200, "height": 26,
+      "text": "📦 业务集成平台（TIC）· P1\nEKP模块间+第三方系统数据联通",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 20, "strokeColor": "#1971c2", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l5-bg", "type": "rectangle", "x": 120, "y": 762, "width": 1350, "height": 82,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid", "strokeWidth": 2.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l5-label", "type": "rectangle", "x": 30, "y": 772, "width": 78, "height": 62,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "#868e96",
+      "fillStyle": "solid", "strokeWidth": 2, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false,
+      "boundElements": [{ "id": "l5-label-t", "type": "text" }], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l5-label-t", "type": "text", "x": 36, "y": 786, "width": 66, "height": 34,
+      "text": "基础设施", "fontSize": 14, "fontFamily": 1, "textAlign": "center",
+      "baseline": 28, "containerId": "l5-label", "isDeleted": false,
+      "strokeColor": "#ffffff", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l5-b1", "type": "rectangle", "x": 140, "y": 780, "width": 310, "height": 46,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#ffe3e3",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l5-b1-t", "type": "text", "x": 160, "y": 790, "width": 270, "height": 26,
+      "text": "🔧 物理机→虚拟服务器 + NVMe SSD · P0\n→ 厂商评估资源/配置，与运维沟通",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 20, "strokeColor": "#e03131", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l5-b2", "type": "rectangle", "x": 470, "y": 780, "width": 270, "height": 46,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#d0ebff",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l5-b2-t", "type": "text", "x": 490, "y": 790, "width": 230, "height": 26,
+      "text": "🔧 Redis缓存 + DB优化/迁移 · P1\n→ 缓存热点数据 · 数据库优化",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 20, "strokeColor": "#1971c2", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l5-b3", "type": "rectangle", "x": 760, "y": 780, "width": 250, "height": 46,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "#e9ecef",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l5-b3-t", "type": "text", "x": 780, "y": 790, "width": 210, "height": 26,
+      "text": "🔧 微服务拆分 + 读写分离 · P2\n→ 📦 微服务增强组件（配套）",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 20, "strokeColor": "#868e96", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "l5-b4", "type": "rectangle", "x": 1030, "y": 780, "width": 200, "height": 46,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#d0ebff",
+      "fillStyle": "solid", "strokeWidth": 1.5, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "l5-b4-t", "type": "text", "x": 1050, "y": 790, "width": 160, "height": 26,
+      "text": "🔧 开放集成 + 连接器 · P1\n对外标准接口 · AI平台对接",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 20, "strokeColor": "#1971c2", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "right-box", "type": "rectangle", "x": 1500, "y": 96, "width": 180, "height": 748,
+      "angle": 0, "strokeColor": "#dee2e6", "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid", "strokeWidth": 1, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "right-title", "type": "text", "x": 1520, "y": 110, "width": 140, "height": 24,
+      "text": "🔴 待领导决策", "fontSize": 16, "fontFamily": 1, "textAlign": "center",
+      "baseline": 18, "strokeColor": "#e03131", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "right-q", "type": "text", "x": 1515, "y": 145, "width": 150, "height": 180,
+      "text": "1. 公文管理（政企版）\n   是否升级？\n   建议P0\n\n2. 移动端入口\n   钉钉/企微/飞书\n   /KK 四选一\n\n3. 三重一大管理\n   是否纳入？\n   合规项\n\n4. 微服务拆分\n   放P2是否可接受？\n   风险高/收益后置",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 174, "strokeColor": "#e03131", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "right-div", "type": "line", "x": 1515, "y": 350, "width": 150, "height": 0,
+      "angle": 0, "strokeColor": "#dee2e6", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": null, "isDeleted": false,
+      "points": [[0, 0], [150, 0]], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "right-done", "type": "text", "x": 1515, "y": 365, "width": 150, "height": 36,
+      "text": "✅ 已确定\n文档编辑 → WPS文档中台", "fontSize": 11, "fontFamily": 1, "textAlign": "center",
+      "baseline": 30, "strokeColor": "#2f9e44", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "right-stats", "type": "text", "x": 1515, "y": 430, "width": 150, "height": 80,
+      "text": "📊 统计\n厂商报价项: 118\n纳入P0: 14项\n纳入P1: 19项\n暂缓/待定: 7项\n不纳入: 73项\n\n会议意见: 31条\n覆盖: 81%",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "center",
+      "baseline": 118, "strokeColor": "#495057", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "right-legend-title", "type": "text", "x": 1515, "y": 545, "width": 150, "height": 16,
+      "text": "图例", "fontSize": 12, "fontFamily": 1, "textAlign": "center",
+      "baseline": 12, "strokeColor": "#495057", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "right-leg1", "type": "text", "x": 1515, "y": 568, "width": 150, "height": 16,
+      "text": "📦 厂商标准产品功能", "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#1971c2", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "right-leg2", "type": "text", "x": 1515, "y": 588, "width": 150, "height": 16,
+      "text": "🔧 定制开发（不在报价单）", "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#f08c00", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "right-leg3", "type": "text", "x": 1515, "y": 608, "width": 150, "height": 16,
+      "text": "🔴 待领导拍板", "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#e03131", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "right-leg4", "type": "text", "x": 1515, "y": 628, "width": 150, "height": 16,
+      "text": "⏸️ 暂缓/P2", "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 12, "strokeColor": "#868e96", "roughness": 0, "opacity": 100, "angle": 0
+    },
+
+    {
+      "id": "legend-bg", "type": "rectangle", "x": 120, "y": 865, "width": 1350, "height": 36,
+      "angle": 0, "strokeColor": "#dee2e6", "backgroundColor": "#ffffff",
+      "fillStyle": "solid", "strokeWidth": 1, "roughness": 0, "opacity": 100,
+      "groupIds": [], "roundness": { "type": 3 }, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "leg1", "type": "rectangle", "x": 140, "y": 876, "width": 12, "height": 12,
+      "strokeColor": "#e03131", "backgroundColor": "#ffe3e3", "fillStyle": "solid", "strokeWidth": 2,
+      "groupIds": [], "roundness": null, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "leg1-t", "type": "text", "x": 158, "y": 873, "width": 80, "height": 18,
+      "text": "P0 优先交付", "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 14, "strokeColor": "#e03131", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "leg2", "type": "rectangle", "x": 260, "y": 876, "width": 12, "height": 12,
+      "strokeColor": "#1971c2", "backgroundColor": "#d0ebff", "fillStyle": "solid", "strokeWidth": 2,
+      "groupIds": [], "roundness": null, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "leg2-t", "type": "text", "x": 278, "y": 873, "width": 80, "height": 18,
+      "text": "P1 后续交付", "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 14, "strokeColor": "#1971c2", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "leg3", "type": "rectangle", "x": 380, "y": 876, "width": 12, "height": 12,
+      "strokeColor": "#868e96", "backgroundColor": "#e9ecef", "fillStyle": "solid", "strokeWidth": 1.5,
+      "groupIds": [], "roundness": null, "isDeleted": false, "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "leg3-t", "type": "text", "x": 398, "y": 873, "width": 100, "height": 18,
+      "text": "暂缓/P2", "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 14, "strokeColor": "#868e96", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "leg4-t", "type": "text", "x": 520, "y": 873, "width": 180, "height": 18,
+      "text": "📦 = 蓝凌报价项（BOM）  🔧 = 定制/自研  🔴 = 待决策",
+      "fontSize": 11, "fontFamily": 1, "textAlign": "left",
+      "baseline": 14, "strokeColor": "#495057", "roughness": 0, "opacity": 100, "angle": 0
+    },
+    {
+      "id": "leg5-t", "type": "text", "x": 750, "y": 873, "width": 600, "height": 18,
+      "text": "数据来源：蓝凌EKP功能清单（结合标准产品及定制）0615 + OA系统升级方案意见征求会议意见汇总表 | 待补充：流程节点优化诉求表",
+      "fontSize": 10, "fontFamily": 1, "textAlign": "left",
+      "baseline": 14, "strokeColor": "#adb5bd", "roughness": 0, "opacity": 100, "angle": 0
+    }
+  ],
+  "appState": { "gridSize": null, "viewBackgroundColor": "#ffffff" },
+  "files": {}
+}
